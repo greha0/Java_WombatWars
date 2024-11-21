@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
-
 import java.util.List;
+  
 import java.util.ArrayList;
 
 /**
@@ -24,8 +24,12 @@ public class Player1 extends Actor
      */
     public void act()
     {
+        
         if(foundLeaf()) {
             eatLeaf();
+            World world = getWorld();
+            world.randomLeaves(1);
+            
         }  
         move();
     }
@@ -92,4 +96,5 @@ public class Player1 extends Actor
     {
         return leavesEaten;
     }
+
 }

@@ -16,7 +16,7 @@ public class WombatWorld extends World
      */
     public WombatWorld() 
     {
-        super(8, 8, 60);        
+        super(12, 12, 60);        
         setBackground("cell.jpg");
     }
 
@@ -25,29 +25,21 @@ public class WombatWorld extends World
      */    
     public void populate()
     {
+        int x , y;
+        Random randomGenerator = new Random();
         Player1 w1 = new Player1();
-        addObject(w1, 3, 3);
+        addObject(w1, randomGenerator.nextInt(12), randomGenerator.nextInt(12));
+        
+        do{
+            x = randomGenerator.nextInt(12);
+            y = randomGenerator.nextInt(12);
+        }while(x==w1.getX() && y==w1.getX());
         
         Player2 w2 = new Player2();
-        addObject(w2, 1, 7);
-
-        Leaf l1 = new Leaf();
-        addObject(l1, 5, 3);
-
-        Leaf l2 = new Leaf();
-        addObject(l2, 0, 2);
-
-        Leaf l3 = new Leaf();
-        addObject(l3, 7, 5);
-
-        Leaf l4 = new Leaf();
-        addObject(l4, 2, 6);
-
-        Leaf l5 = new Leaf();
-        addObject(l5, 5, 0);
+        addObject(w2, x, y);
         
-        Leaf l6 = new Leaf();
-        addObject(l6, 4, 7);
+        randomLeaves(3);
+     
     }
     
     /**

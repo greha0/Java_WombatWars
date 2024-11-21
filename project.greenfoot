@@ -1,7 +1,7 @@
 #Greenfoot project file
 class.Leaf.image=leaf.gif
 class.Player1.image=wombat.gif
-class.Player2.image=wombat.gif
+class.Player2.image=wombat2.gif
 dependency1.from=WombatWorld
 dependency1.to=Player1
 dependency1.type=UsesDependency
@@ -19,8 +19,8 @@ dependency5.to=Leaf
 dependency5.type=UsesDependency
 editor.fx.0.height=739
 editor.fx.0.width=816
-editor.fx.0.x=337
-editor.fx.0.y=54
+editor.fx.0.x=311
+editor.fx.0.y=69
 height=868
 package.numDependencies=5
 package.numTargets=4
