@@ -1,6 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
 import java.util.List;
-  
 import java.util.ArrayList;
 
 /**
@@ -13,10 +12,14 @@ import java.util.ArrayList;
 public class Player1 extends Actor
 {
     private int leavesEaten;
+    private int biomasse;
+    private int round;
 
     public Player1()
     {
         leavesEaten = 0;
+        biomasse = 0;
+        round = 1;
     }
 
     /**
@@ -26,11 +29,16 @@ public class Player1 extends Actor
     {
         
         if(foundLeaf()) {
-            eatLeaf();
-            World world = getWorld();
-            world.randomLeaves(1);
-            
-        }  
+            eatLeaf(); 
+            randomLeaves(1);
+        }
+        
+        if(getLeavesEaten() + 2 > getBiomassa()){
+            Biomassa b = new Biomassa();
+            getWorld().addObject(b, getX(), getY());
+            biomasse++;
+        }
+        
         move();
     }
 
@@ -96,5 +104,29 @@ public class Player1 extends Actor
     {
         return leavesEaten;
     }
+    
+    /**
+     * Place a number of leaves into the world at random places.
+     * The number of leaves can be specified.
+     */
+    public void randomLeaves(int howMany)
+    {
+        for(int i=0; i<howMany; i++) {
+            Leaf leaf = new Leaf();
+            int x = 0;
+            int y = 0;
+            do{
+                x = Greenfoot.getRandomNumber(getWorld().getWidth());
+                y = Greenfoot.getRandomNumber(getWorld().getHeight());
+            }while(getWorld().getObjectsAt(x,y,null)==null);
+            getWorld().addObject(leaf, x, y);
+        }
+    }
+    
+    public int getBiomassa(){
+        return biomasse;
+    }
+    
+    
 
 }

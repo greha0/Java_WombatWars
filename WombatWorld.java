@@ -31,9 +31,9 @@ public class WombatWorld extends World
         addObject(w1, randomGenerator.nextInt(12), randomGenerator.nextInt(12));
         
         do{
-            x = randomGenerator.nextInt(12);
-            y = randomGenerator.nextInt(12);
-        }while(x==w1.getX() && y==w1.getX());
+            x = randomGenerator.nextInt(getWidth());
+            y = randomGenerator.nextInt(getHeight());
+        }while(getObjectsAt(x,y,null)==null);
         
         Player2 w2 = new Player2();
         addObject(w2, x, y);
@@ -50,9 +50,15 @@ public class WombatWorld extends World
     {
         for(int i=0; i<howMany; i++) {
             Leaf leaf = new Leaf();
-            int x = Greenfoot.getRandomNumber(getWidth());
-            int y = Greenfoot.getRandomNumber(getHeight());
+            int x = 0;
+            int y = 0;
+            do{
+                x = Greenfoot.getRandomNumber(getWidth());
+                y = Greenfoot.getRandomNumber(getHeight());
+            }while(getObjectsAt(x,y,null)==null);
             addObject(leaf, x, y);
         }
     }
+    
+    
 }

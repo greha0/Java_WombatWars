@@ -26,6 +26,7 @@ public class Player2 extends Actor
     {
         if(foundLeaf()) {
             eatLeaf();
+            randomLeaves(1);
         }  
         move();
     }
@@ -91,5 +92,23 @@ public class Player2 extends Actor
     public int getLeavesEaten()
     {
         return leavesEaten;
+    }
+    
+    /**
+     * Place a number of leaves into the world at random places.
+     * The number of leaves can be specified.
+     */
+    public void randomLeaves(int howMany)
+    {
+        for(int i=0; i<howMany; i++) {
+            Leaf leaf = new Leaf();
+            int x = 0;
+            int y = 0;
+            do{
+                x = Greenfoot.getRandomNumber(getWorld().getWidth());
+                y = Greenfoot.getRandomNumber(getWorld().getHeight());
+            }while(getWorld().getObjectsAt(x,y,null)==null);
+            getWorld().addObject(leaf, x, y);
+        }
     }
 }
