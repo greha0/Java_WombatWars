@@ -21,4 +21,6 @@ comment6.text=\r\n\ Tell\ how\ many\ leaves\ we\ have\ eaten.\r\n
 comment7.params=howMany
 comment7.target=void\ randomLeaves(int)
 comment7.text=\r\n\ Place\ a\ number\ of\ leaves\ into\ the\ world\ at\ random\ places.\r\n\ The\ number\ of\ leaves\ can\ be\ specified.\r\n
-numComments=8
+comment8.params=
+comment8.target=int\ getBiomassa()
+numComments=9

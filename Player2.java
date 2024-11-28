@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class Player2 extends Actor
 {
     private int leavesEaten;
+    private int biomasse;
 
     public Player2()
     {
@@ -28,6 +29,12 @@ public class Player2 extends Actor
             eatLeaf();
             randomLeaves(1);
         }  
+        
+        if(getLeavesEaten()  == getBiomassa() + Greenfoot.getRandomNumber(100)){
+            Biomassa b = new Biomassa();
+            getWorld().addObject(b, getX(), getY());
+            biomasse++;
+        }
         move();
     }
 
@@ -110,5 +117,9 @@ public class Player2 extends Actor
             }while(getWorld().getObjectsAt(x,y,null)==null);
             getWorld().addObject(leaf, x, y);
         }
+    }
+    
+    public int getBiomassa(){
+        return biomasse;
     }
 }

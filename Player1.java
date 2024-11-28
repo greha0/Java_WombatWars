@@ -33,7 +33,7 @@ public class Player1 extends Actor
             randomLeaves(1);
         }
         
-        if(getLeavesEaten() + 2 > getBiomassa()){
+        if(getLeavesEaten()  == getBiomassa() + Greenfoot.getRandomNumber(100)){
             Biomassa b = new Biomassa();
             getWorld().addObject(b, getX(), getY());
             biomasse++;
