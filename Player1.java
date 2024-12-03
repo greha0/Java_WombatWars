@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Michael Kolling
  * @version 1.0.1
  */
-public class Player1 extends Actor
+public class Player1 extends Wombat
 {
     private int leavesEaten;
     private int biomasse;
@@ -27,46 +27,27 @@ public class Player1 extends Actor
      */
     public void act()
     {
+        round++;
+        int roundNow=0;
         
         if(foundLeaf()) {
             eatLeaf(); 
             randomLeaves(1);
+            if(getBiomassa() == Greenfoot.getRandomNumber(10)){
+                Biomassa b = new Biomassa();
+                getWorld().addObject(b, getX()-1, getY()-1);
+                biomasse++;
+            }
         }
         
-        if(getLeavesEaten()  == getBiomassa() + Greenfoot.getRandomNumber(100)){
-            Biomassa b = new Biomassa();
-            getWorld().addObject(b, getX(), getY());
-            biomasse++;
+        if(foundBiomassa()){
+            roundNow = round;
+            if(round-roundNow <= 5){
+                return;
+            }
         }
         
         move();
-    }
-
-    /**
-     * Check whether there is a leaf in the same cell as we are.
-     */
-    public boolean foundLeaf()
-    {
-        Actor leaf = getOneObjectAtOffset(0, 0, Leaf.class);
-        if(leaf != null) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    
-    /**
-     * Eat a leaf.
-     */
-    public void eatLeaf()
-    {
-        Actor leaf = getOneObjectAtOffset(0, 0, Leaf.class);
-        if(leaf != null) {
-            // eat the leaf...
-            getWorld().removeObject(leaf);
-            leavesEaten = leavesEaten + 1; 
-        }
     }
     
     /**
@@ -96,37 +77,5 @@ public class Player1 extends Actor
         }
         
     }
-
-    /**
-     * Tell how many leaves we have eaten.
-     */
-    public int getLeavesEaten()
-    {
-        return leavesEaten;
-    }
-    
-    /**
-     * Place a number of leaves into the world at random places.
-     * The number of leaves can be specified.
-     */
-    public void randomLeaves(int howMany)
-    {
-        for(int i=0; i<howMany; i++) {
-            Leaf leaf = new Leaf();
-            int x = 0;
-            int y = 0;
-            do{
-                x = Greenfoot.getRandomNumber(getWorld().getWidth());
-                y = Greenfoot.getRandomNumber(getWorld().getHeight());
-            }while(getWorld().getObjectsAt(x,y,null)==null);
-            getWorld().addObject(leaf, x, y);
-        }
-    }
-    
-    public int getBiomassa(){
-        return biomasse;
-    }
-    
-    
 
 }

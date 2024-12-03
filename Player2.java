@@ -10,14 +10,17 @@ import java.util.ArrayList;
  * @author Michael Kolling
  * @version 1.0.1
  */
-public class Player2 extends Actor
+public class Player2 extends Wombat
 {
     private int leavesEaten;
     private int biomasse;
+    private int round;
 
     public Player2()
     {
         leavesEaten = 0;
+        biomasse = 0;
+        round = 0;
     }
 
     /**
@@ -25,10 +28,18 @@ public class Player2 extends Actor
      */
     public void act()
     {
+        int roundNow = 0;
         if(foundLeaf()) {
             eatLeaf();
             randomLeaves(1);
         }  
+        
+        if(foundBiomassa()){
+            roundNow = round;
+            if(round-roundNow <= 5){
+                return;
+            }
+        }
         
         if(getLeavesEaten()  == getBiomassa() + Greenfoot.getRandomNumber(100)){
             Biomassa b = new Biomassa();
@@ -121,5 +132,19 @@ public class Player2 extends Actor
     
     public int getBiomassa(){
         return biomasse;
+    }
+    
+    /**
+     * Check whether there is a biomassa in the same cell as we are.
+     */
+    public boolean foundBiomassa()
+    {
+        Actor biomassa = getOneObjectAtOffset(0, 0, Biomassa.class);
+        if(biomassa != null) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
