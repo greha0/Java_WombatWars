@@ -81,4 +81,23 @@ public class Wombat extends Actor
             return false;
         }
     }
+    
+    /**
+     * Tell how many leaves we have eaten.
+     */
+    public int getLeavesEaten()
+    {
+        return leavesEaten;
+    }
+    
+    /**
+     * Controlla se ci sono wombat nelle vicinanze
+     */
+    
+    public boolean nearWombat(){
+        if(getObjectsInRange(1, Wombat.class)==null){
+            return false;
+        }
+        return true;
+    }
 }

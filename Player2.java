@@ -50,33 +50,6 @@ public class Player2 extends Wombat
     }
 
     /**
-     * Check whether there is a leaf in the same cell as we are.
-     */
-    public boolean foundLeaf()
-    {
-        Actor leaf = getOneObjectAtOffset(0, 0, Leaf.class);
-        if(leaf != null) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    
-    /**
-     * Eat a leaf.
-     */
-    public void eatLeaf()
-    {
-        Actor leaf = getOneObjectAtOffset(0, 0, Leaf.class);
-        if(leaf != null) {
-            // eat the leaf...
-            getWorld().removeObject(leaf);
-            leavesEaten = leavesEaten + 1; 
-        }
-    }
-    
-    /**
      * Move one cell forward in the current direction.
      */
     public void move()
@@ -102,49 +75,5 @@ public class Player2 extends Wombat
             setRotation(90);
         }
         
-    }
-
-    /**
-     * Tell how many leaves we have eaten.
-     */
-    public int getLeavesEaten()
-    {
-        return leavesEaten;
-    }
-    
-    /**
-     * Place a number of leaves into the world at random places.
-     * The number of leaves can be specified.
-     */
-    public void randomLeaves(int howMany)
-    {
-        for(int i=0; i<howMany; i++) {
-            Leaf leaf = new Leaf();
-            int x = 0;
-            int y = 0;
-            do{
-                x = Greenfoot.getRandomNumber(getWorld().getWidth());
-                y = Greenfoot.getRandomNumber(getWorld().getHeight());
-            }while(getWorld().getObjectsAt(x,y,null)==null);
-            getWorld().addObject(leaf, x, y);
-        }
-    }
-    
-    public int getBiomassa(){
-        return biomasse;
-    }
-    
-    /**
-     * Check whether there is a biomassa in the same cell as we are.
-     */
-    public boolean foundBiomassa()
-    {
-        Actor biomassa = getOneObjectAtOffset(0, 0, Biomassa.class);
-        if(biomassa != null) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+    } 
 }

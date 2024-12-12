@@ -47,6 +47,13 @@ public class Player1 extends Wombat
             }
         }
         
+        if(nearWombat()){
+            
+        } else {
+            if(getOneObjectAtOffset(1, 0, Wombat.class)!= null){
+                
+            }
+        }
         move();
     }
     
